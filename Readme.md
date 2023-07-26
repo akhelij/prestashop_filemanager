@@ -1,6 +1,8 @@
-# ge_filemanager
+# filemanager
 
 This prestashop module is a file management module for PrestaShop, allowing administrators to upload, manage, and organize files. And the best thing is that you can copy the path of your uploaded file and use it easily in your other modules like slider or blog.
+
+The module was made in a rush to fill a quick need, so its pretty ugly, I plan to make the code cleaner and the user experiance more dynamic in the future, please feel free to offer your support !
 
 ## Features
 
@@ -8,7 +10,6 @@ This prestashop module is a file management module for PrestaShop, allowing admi
 - Organize files into folders for better organization and accessibility.
 - Supports uploading various file types, including images, videos, PDFs, and more.
 - Intuitive and user-friendly interface for easy navigation and usage.
-- Secure file handling with proper permission checks and validations.
 
 ## Requirements
 
@@ -26,10 +27,10 @@ This prestashop module is a file management module for PrestaShop, allowing admi
 ## Usage
 
 - To access the file management interface, go to the back office and navigate to "Modules" > "Installed modules."
-- Find "Module Name" in the list and click the "Configure" button to access the file manager.
+- Find "ge_filemanager" in the list and click the "Configure" button to access the file manager.
 - Upload files by using the "Upload" button and select the files you want to upload. You can upload multiple files at once.
-- Manage files by renaming, moving, or deleting them. You can also create new folders to organize your files.
-- Click on a file to get a direct link to it, which you can use on the front end or share with others.
+- You can also create new folders to organize your files.
+- Click copy path on a file to get a direct link to it, which you can use on the front end or share with others.
 
 ## Contributing
 
