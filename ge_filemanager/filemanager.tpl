@@ -33,10 +33,10 @@
             </thead>
             <tbody>
             {foreach $files as $file}
-                {if $file.is_folder}
+                {if $file.type == "Folder"}
                     <tr>
                         <td>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="30">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="50">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776" />
                             </svg>
                         </td>
@@ -48,17 +48,43 @@
                         </td>
                     </tr>
                     
-                {else}
+                {elseif $file.type == "Image"}
                     <tr>
-                        <td><img src="{$file.url}" class="img-preview" alt="{$file.name}" width="50"></td>
+                        <td><img src="{$file.url}" class="img-preview" alt="{$file.name}" width="75"></td>
                         <td>{$file.name}</td>
                         <td>{$file.size}</td>
                         <td>
-                            <button class="btn btn-info copy-path" data-path="{$file.path}">Copy path</button>
+                            <button class="btn btn-info copy-path" data-path="{$file.url}">Copy path</button>
                             <a href="{$file.url}" target="_blank" class="btn btn-primary">Download</a>
                             <button class="btn btn-danger delete-file" data-file="{$file.name}">Delete</button>
                         </td>
                     </tr>
+                {elseif $file.type == "Video"}
+                    <tr>
+                        <td>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="50">
+                            <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+                            </svg>
+                        </td>
+                        <td>{$file.name}</td>
+                        <td>{$file.size}</td>
+                        <td>
+                            <button class="btn btn-info copy-path" data-path="{$file.url}">Copy path</button>
+                            <a href="{$file.url}" target="_blank" class="btn btn-primary">Download</a>
+                            <button class="btn btn-danger delete-file" data-file="{$file.name}">Delete</button>
+                        </td>
+                    </tr>
+                {else}
+                    <tr>
+                        <td>
+                            --
+                        </td>
+                        <td>{$file.name}</td>
+                        <td>{$file.size}</td>
+                        <td>
+                            <button class="btn btn-danger delete-folder" data-folder="{$file.name}">Delete</button>
+                        </td>
+                    </tr>   
                 {/if}
             {/foreach}
             </tbody>

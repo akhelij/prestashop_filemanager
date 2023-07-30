@@ -62,9 +62,7 @@ class Ge_filemanager extends Module
 
     public function install()
     {
-        return parent::install() &&
-            $this->registerHook('header') &&
-            $this->registerHook('displayBackOfficeHeader');
+        return parent::install();
     }
 
     public function uninstall()
@@ -177,15 +175,23 @@ class Ge_filemanager extends Module
             if ($file != "." && $file != "..") {
                 $filePath = $uploadDir . $file;
                 $fileSize = filesize($filePath);
-                $isFolder = is_dir($filePath);
                 $publicFileUrl = '/modules/ge_filemanager/uploads'.$this->getPathComplement($uploadDir).$file;
+                $type = 'Other';
+                $fileExtension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                if (is_dir($filePath)) {
+                    $type = 'Folder';
+                } elseif (in_array($fileExtension, array('jpg', 'jpeg', 'png', 'gif', 'bmp'), true)) {
+                    $type = 'Image';
+                } elseif (in_array($fileExtension, array('mp4', 'webm', 'ogg', 'avi'), true)) {
+                    $type = 'Video';
+                }
 
                 $files[] = array(
                     'name' => $file,
                     'size' => $this->formatFileSize($fileSize),
                     'url' => $publicFileUrl,
                     'path' => $filePath,
-                    'is_folder' => $isFolder
+                    'type' => $type
                 );
             }
         }
